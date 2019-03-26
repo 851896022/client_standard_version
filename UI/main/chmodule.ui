@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChModule</class>
+ <widget class="QFrame" name="ChModule">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>89</width>
+    <height>331</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#ChModule
+{
+	
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(162, 162, 162, 179), stop:1 rgba(153, 153, 153, 255));
+	border-radius: 5px;
+
+
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>5</number>
+   </property>
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="chName">
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::DefaultContextMenu</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid #FFFFFF; 
+border-radius: 5px;
+</string>
+     </property>
+     <property name="text">
+      <string>A01主用卫星接收机</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="state">
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>8888%</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QProgressBar
+ {  
+ border: 2px solid grey;  
+ border-radius: 5px;   
+background-color: #FFFFFF;
+}
+QProgressBar::chunk 
+{   
+ 
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.00568182 rgba(0, 157, 68, 255), stop:1 rgba(134, 255, 141, 255));
+
+}
+QProgressBar 
+{   
+border: 2px solid grey;   
+border-radius: 5px;   
+text-align: center;
+}</string>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <action name="startListen">
+   <property name="icon">
+    <iconset resource="../../image.qrc">
+     <normaloff>:/image/CyclePlayAudio.png</normaloff>:/image/CyclePlayAudio.png</iconset>
+   </property>
+   <property name="text">
+    <string>监听</string>
+   </property>
+   <property name="toolTip">
+    <string>开始/停止单路监听</string>
+   </property>
+  </action>
+  <action name="startRepair">
+   <property name="icon">
+    <iconset resource="../../image.qrc">
+     <normaloff>:/image/Refresh34.png</normaloff>:/image/Refresh34.png</iconset>
+   </property>
+   <property name="text">
+    <string>检修</string>
+   </property>
+  </action>
+  <action name="addListenList">
+   <property name="icon">
+    <iconset resource="../../image.qrc">
+     <normaloff>:/image/List34.png</normaloff>:/image/List34.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加/删除</string>
+   </property>
+   <property name="toolTip">
+    <string>从监听列表添加/删除</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../../image.qrc"/>
+ </resources>
+ <connections/>
+</ui>
