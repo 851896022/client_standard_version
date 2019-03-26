@@ -59,7 +59,7 @@ void ChModule::on_ChModule_customContextMenuRequested(const QPoint &pos)
         }
     }
     menu.addAction(ui->addListenList);
-    menu.addAction(ui->startRepair);
+    //menu.addAction(ui->startRepair);
     //在鼠标位置显示
     menu.exec(QCursor::pos());
     int i=pos.x();i=i;//去警告
@@ -70,6 +70,33 @@ void ChModule::on_ChModule_customContextMenuRequested(const QPoint &pos)
 
 void ChModule::refApm()
 {
+
+    //============判断数据是否不波动了=============
+
+    if(g->APM[No]==apmCahe&&g->APM[No]>0)
+    {
+        apmCount++;
+    }
+    else
+    {
+        apmCount=0;
+        apmCahe=g->APM[No];
+    }
+    if(apmCount>=50)
+    {
+
+
+        if(apmCount%10==0)
+        {
+            ui->progressBar->setValue(0);
+            qDebug()<<"ch"<<No<<"数据无波动已"<<apmCount/10.0<<"秒"<<"停止刷新";
+        }
+
+        return;
+    }
+
+
+    //==============模拟跳动================
     if(refDelay==0)
     {
         if(g->APM[No]>=(ui->progressBar->value()-5))
@@ -89,6 +116,9 @@ void ChModule::refApm()
         ui->progressBar->setValue(ui->progressBar->value()-5);
     }
     refDelay--;
+
+
+
     /*
     ui->progressBar->setValue(qrand()%100);
     ui->state->setText(QString::number((qrand()%100+900.0)/10.0)+"%");

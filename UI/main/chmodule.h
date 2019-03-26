@@ -37,6 +37,8 @@ signals:
     void changeListen(int type,int ch);
 private:
     Ui::ChModule *ui;
+    int apmCahe=0;
+    int apmCount=0;
 public slots:
     void initThis();
     void onStarListenThisCH(int type,int ch);
