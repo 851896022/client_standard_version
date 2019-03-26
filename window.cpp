@@ -3,6 +3,7 @@
 #include "ui_window.h"
 #include <QDebug>
 #include "QMessageBox"
+#include "QSettings"
 window::window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::window)
@@ -31,142 +32,155 @@ window::window(QWidget *parent) :
     topVboxLayout.setMargin(0);
     ui->topWidget->setLayout(&topVboxLayout);
     //定义台站
-#define station_641
+    QSettings setting(qApp->applicationDirPath()+"/station.ini",QSettings::IniFormat);//设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
+    QString station=setting.value("set/time_10510_start_hh").toString();//将读取出的数据进行使用;
+
     //------main----------
-#ifdef station_554
-    qDebug()<<"init main window mian 554";
-    g->equCount=2;
-    QList<int> modleList[2];
-    modleList[0]<<0<<2<<4<<6<<8<<10<<18<<20<<22<<24<<26;
-    modleList[1]<<36<<37<<38<<39<<40<<41<<54<<55<<56<<57<<58;
-    for(int i=0;i<g->equCount;i++)
+    if(station==QString(554))
     {
-        for(int j=0;j<11;j++)
+        qDebug()<<"init main window mian 554";
+        g->equCount=2;
+        QList<int> modleList[2];
+        modleList[0]<<0<<2<<4<<6<<8<<10<<18<<20<<22<<24<<26;
+        modleList[1]<<36<<37<<38<<39<<40<<41<<54<<55<<56<<57<<58;
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
-            chModules[modleList[i].at(j)].No=modleList[i].at(j);
-            chModules[modleList[i].at(j)].initThis();
-            connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<11;j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"554台");
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-    ui->mainTabWidget->setTabText(0,"554台");
-#endif
-#ifdef station_564
-    qDebug()<<"init main window mian 564";
-    g->equCount=2;
-    QList<int> modleList[2];
-    modleList[0]<<0<<1<<2<<3<<18<<19<<20<<21<<36<<37<<38;
-    modleList[1]<<54<<55<<56<<57<<58<<59<<60<<61<<62<<63<<64;
-    for(int i=0;i<g->equCount;i++)
+    else if(station==QString(564))
     {
-        for(int j=0;j<11;j++)
+        qDebug()<<"init main window mian 564";
+        g->equCount=2;
+        QList<int> modleList[2];
+        modleList[0]<<0<<1<<2<<3<<18<<19<<20<<21<<36<<37<<38;
+        modleList[1]<<54<<55<<56<<57<<58<<59<<60<<61<<62<<63<<64;
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
-            chModules[modleList[i].at(j)].No=modleList[i].at(j);
-            chModules[modleList[i].at(j)].initThis();
-            connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<11;j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"564台");
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-    ui->mainTabWidget->setTabText(0,"564台");
-#endif
-#ifdef station_2024
-    qDebug()<<"init main window mian 2024";
-    g->equCount=2;
-    QList<int> modleList[2];
-    modleList[0]<<0<<1<<2<<3<<4<<5<<6<<7<<8<<9<<10<<11;
-    modleList[1]<<18<<19<<20<<21<<22<<23<<24<<25<<26<<27<<28<<29;
-    for(int i=0;i<g->equCount;i++)
+
+    else if(station==QString(2024))
     {
-        for(int j=0;j<modleList[i].count();j++)
+        qDebug()<<"init main window mian 2024";
+        g->equCount=2;
+        QList<int> modleList[2];
+        modleList[0]<<0<<1<<2<<3<<4<<5<<6<<7<<8<<9<<10<<11;
+        modleList[1]<<18<<19<<20<<21<<22<<23<<24<<25<<26<<27<<28<<29;
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
-            chModules[modleList[i].at(j)].No=modleList[i].at(j);
-            chModules[modleList[i].at(j)].initThis();
-            connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<modleList[i].count();j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"2024台");
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-    ui->mainTabWidget->setTabText(0,"2024台");
-#endif
-#ifdef station_641
-    qDebug()<<"init main window mian 641";
-    g->equCount=2;
-    QList<int> modleList[2];
-    modleList[0]<<18<<20<<22<<24<<26<<28<<30<<0<<2<<4<<6<<8<<10<<12<<54;
-    modleList[1]<<36<<37<<38<<39<<40<<41<<42<<44<<45<<46<<47<<48<<49<<50<<43;
-    for(int i=0;i<g->equCount;i++)
+    else if(station==QString(641))
     {
-        for(int j=0;j<modleList[i].count();j++)
+        qDebug()<<"init main window mian 641";
+        g->equCount=2;
+        QList<int> modleList[2];
+        modleList[0]<<18<<20<<22<<24<<26<<28<<30<<0<<2<<4<<6<<8<<10<<12<<54;
+        modleList[1]<<36<<37<<38<<39<<40<<41<<42<<44<<45<<46<<47<<48<<49<<50<<43;
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
-            chModules[modleList[i].at(j)].No=modleList[i].at(j);
-            chModules[modleList[i].at(j)].initThis();
-            connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<modleList[i].count();j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"641台");
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-    ui->mainTabWidget->setTabText(0,"641台");
-#endif
-#ifdef station_std
-    qDebug()<<"init main window mian std";
-
-    for(int i=0;i<g->equCount;i++)
+    else if(station==QString("yt"))
     {
-        for(int j=0;j<18;j++)
+        qDebug()<<"init main window mian yt";
+        g->equCount=1;
+        QList<int> modleList[1];
+        modleList[0]<<0<<2<<1<<3<<4<<6<<5<<7<<8<<10<<9<<11;
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[i*18+j]);
-            chModules[i*18+j].No=i*18+j;
-            chModules[i*18+j].initThis();
-            if(j>11) chModules[i*18+j].setVisible(false);
-            connect(&chModules[i*18+j],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[i*18+j],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<modleList[i].count();j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"月坛台");
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-#endif
-#ifdef station_yt
-    qDebug()<<"init main window mian yt";
-    g->equCount=1;
-    QList<int> modleList[1];
-    modleList[0]<<0<<2<<1<<3<<4<<6<<5<<7<<8<<10<<9<<11;
-    for(int i=0;i<g->equCount;i++)
+    else
     {
-        for(int j=0;j<modleList[i].count();j++)
+        qDebug()<<"init main window mian std";
+
+        for(int i=0;i<g->equCount;i++)
         {
-            mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
-            chModules[modleList[i].at(j)].No=modleList[i].at(j);
-            chModules[modleList[i].at(j)].initThis();
-            connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
-            connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+            for(int j=0;j<18;j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[i*18+j]);
+                chModules[i*18+j].No=i*18+j;
+                chModules[i*18+j].initThis();
+                if(j>11) chModules[i*18+j].setVisible(false);
+                connect(&chModules[i*18+j],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[i*18+j],SLOT(onStarListenThisCH(int,int)));
 
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
         }
-
-        mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
     }
-    ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
-    ui->mainTabWidget->setTabText(0,"月坛台");
-#endif
+
+
+
+
     qDebug()<<"init main window menu";
     //-----menu-----------
     ui->menu_2->addAction(ui->actFindOld);
