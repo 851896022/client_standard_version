@@ -32,8 +32,8 @@ window::window(QWidget *parent) :
     topVboxLayout.setMargin(0);
     ui->topWidget->setLayout(&topVboxLayout);
     //定义台站
-    QSettings setting(qApp->applicationDirPath()+"/station.ini",QSettings::IniFormat);//设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
-    QString station=setting.value("set/time_10510_start_hh").toString();//将读取出的数据进行使用;
+    QSettings setting(qApp->applicationDirPath()+"/set.ini",QSettings::IniFormat);//设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
+    QString station=setting.value("Station/station").toString();//将读取出的数据进行使用;
 
     //------main----------
     if(station==QString(554))
