@@ -133,7 +133,15 @@ void ChModule::refSim()
     }
     else
     {
-        str=QString::number(g->audioSim[No]*100,'f', 2)+"%";
+        if(g->stationLabel==QString("yt"))
+        {
+            str=QString::number(sqrt(sqrt( g->audioSim[No]))*100,'f', 2)+"%";
+        }
+        else
+        {
+            str=QString::number(g->audioSim[No]*100,'f', 2)+"%";
+        }
+
     }
 
     ui->state->setText(str);

@@ -35,6 +35,8 @@ class Global : public QObject
 public:
     explicit Global(QObject *parent = nullptr);
     int APM[200]={0};
+    //台站标记
+    QString stationLabel;
     QStringList chNameList;
     int equCount=2; //设备数量修改在这儿！！！！！
     bool alarmLinkState=false;

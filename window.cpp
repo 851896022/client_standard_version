@@ -34,7 +34,7 @@ window::window(QWidget *parent) :
     //定义台站
     QSettings setting(qApp->applicationDirPath()+"/set.ini",QSettings::IniFormat);//设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
     QString station=setting.value("Station/station").toString();//将读取出的数据进行使用;
-
+    g->stationLabel=station;
     //------main----------
     if(station==QString(554))
     {
