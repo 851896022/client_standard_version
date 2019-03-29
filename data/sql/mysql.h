@@ -21,6 +21,7 @@ signals:
 public slots:
     void initThis(QString HostName,QString DataBaseName,QString UserName,QString PassWord);
     bool command(QString);
+    bool takeLog(QString log="NULL",QString sheet="log",QString type="NULL",QString user="admin");
 };
 
 #endif // MYSQL_H

@@ -9,6 +9,7 @@
 #include <QList>
 #include <QDateTime>
 #include <QAxObject>
+#include "data/sql/mysql.h"
 //#include "data/sql/mysql.h"
 enum AlarmType
 {
@@ -56,7 +57,7 @@ public:
     QString userName;
     //====SAPI=============
     QAxObject *voiceObj;
-    //MySQL mySql;
+    MySQL mySql;
     //=============================
 
     QString localIp;

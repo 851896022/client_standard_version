@@ -23,6 +23,12 @@ void LogIn::on_btnOk_clicked()
     if(ui->txtPass->text()==ui->txtUser->text())
     {
         //登录成功
+
+
+
+
+
+        g->mySql.takeLog(ui->txtUser->text()+QString("登录"),"user_log","user",ui->txtUser->text());
         emit onLogIn(ui->txtUser->text());
         hide();
     }

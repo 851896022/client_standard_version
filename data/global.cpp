@@ -1,6 +1,7 @@
 #include "global.h"
 #include <QApplication>
 #include <QSettings>
+
 Global::Global(QObject *parent) : QObject(parent)
 {
     for(int i=0;i<200;i++)
@@ -51,7 +52,7 @@ Global::Global(QObject *parent) : QObject(parent)
     localIp=setting.value("IP/local_IP").toString();//将读取出的数据进行使用;
     ServerIp=setting.value("IP/server_IP").toString();//将读取出的数据进行使用;
     //=========================================================================
-    //mySql.initThis(ServerIp,"ly","root","123456");
+    mySql.initThis(ServerIp,"ggd","root","986753421");
     doLog("启动程序！");
 }
 void Global::switchListen(int,int)

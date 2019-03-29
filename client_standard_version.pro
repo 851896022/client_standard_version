@@ -42,7 +42,8 @@ SOURCES += \
     UI/main/login.cpp \
     UI/main/setgate.cpp \
     data/yxt/qReader.cpp \
-    data/yxt/qRedis.cpp
+    data/yxt/qRedis.cpp \
+    data/sql/mysql.cpp
 
 HEADERS += \
         window.h \
@@ -61,7 +62,8 @@ HEADERS += \
     UI/main/login.h \
     UI/main/setgate.h \
     data/yxt/qReader.h \
-    data/yxt/qRedis.h
+    data/yxt/qRedis.h \
+    data/sql/mysql.h
 
 FORMS += \
         window.ui \

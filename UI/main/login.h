@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QMessageBox>
+#include "data/global.h"
 namespace Ui {
 class LogIn;
 }
