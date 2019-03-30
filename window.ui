@@ -124,6 +124,7 @@ background-color: rgb(211, 211, 211);
     <property name="title">
      <string>查询</string>
     </property>
+    <addaction name="actQuery"/>
    </widget>
    <addaction name="menu_1"/>
    <addaction name="menu_2"/>
@@ -140,6 +141,11 @@ background-color: rgb(211, 211, 211);
   <action name="actSetGate">
    <property name="text">
     <string>设置门限</string>
+   </property>
+  </action>
+  <action name="actQuery">
+   <property name="text">
+    <string>日志查询</string>
    </property>
   </action>
  </widget>

@@ -24,9 +24,12 @@ public slots:
 private slots:
     void on_btnReset_clicked();
     void on_btnSet_clicked();
+    void on_btnReach_clicked();
+
 signals:
     void onSetClicked();
     void onResetClicked();
+    void onReachClicked();
 };
 
 #endif // ALARMINFO_H

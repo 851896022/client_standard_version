@@ -43,7 +43,8 @@ SOURCES += \
     UI/main/setgate.cpp \
     data/yxt/qReader.cpp \
     data/yxt/qRedis.cpp \
-    data/sql/mysql.cpp
+    data/sql/mysql.cpp \
+    UI/main/logquery.cpp
 
 HEADERS += \
         window.h \
@@ -63,7 +64,8 @@ HEADERS += \
     UI/main/setgate.h \
     data/yxt/qReader.h \
     data/yxt/qRedis.h \
-    data/sql/mysql.h
+    data/sql/mysql.h \
+    UI/main/logquery.h
 
 FORMS += \
         window.ui \
@@ -75,7 +77,8 @@ FORMS += \
     UI/top/topbar.ui \
     UI/main/historyaudio.ui \
     UI/main/login.ui \
-    UI/main/setgate.ui
+    UI/main/setgate.ui \
+    UI/main/logquery.ui
 
 RESOURCES += \
     image.qrc\

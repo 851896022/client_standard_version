@@ -20,6 +20,7 @@ window::window(QWidget *parent) :
     leftVboxLayout.addWidget(&alarmInfo);
     connect(&alarmInfo,SIGNAL(onSetClicked()),this,SLOT(on_actSetGate_triggered()));
     connect(&alarmInfo,SIGNAL(onResetClicked()),this,SLOT(on_actSetGate_triggered()));
+    connect(&alarmInfo,SIGNAL(onReachClicked()),this,SLOT(on_actQuery_triggered()));
     leftVboxLayout.addWidget(&gpsTime);
     leftVboxLayout.setMargin(3);
     leftVboxLayout.setSpacing(0);
@@ -184,7 +185,7 @@ window::window(QWidget *parent) :
     qDebug()<<"init main window menu";
     //-----menu-----------
     ui->menu_2->addAction(ui->actFindOld);
-
+    //ui->menu_2->addAction(ui->a)
     connect(&listen,SIGNAL(listenInfo(int,int)),&topBar,SLOT(refListenInfo(int,int)));
     qDebug()<<"init main window statusBar";
     //-----statusBar------
@@ -280,4 +281,18 @@ void window::switchFullScreen()
         ui->centralWidget->showFullScreen ();
     }
 
+}
+
+void window::on_actQuery_triggered()
+{
+    if(g->islogIn)
+    {
+        if(logQuery) logQuery->deleteLater();
+        logQuery=new LogQuery;
+        logQuery->show();
+    }
+    else
+    {
+        QMessageBox::information(this,"信息","请登录");
+    }
 }

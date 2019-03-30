@@ -122,3 +122,8 @@ void AlarmInfo::on_btnSet_clicked()
 {
     emit onSetClicked();
 }
+
+void AlarmInfo::on_btnReach_clicked()
+{
+    emit onReachClicked();
+}

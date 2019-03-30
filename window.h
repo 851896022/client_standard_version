@@ -13,6 +13,7 @@
 #include "UI/top/topbar.h"
 #include "UI/main/historyaudio.h"
 #include "UI/main/setgate.h"
+#include "UI/main/logquery.h"
 #include <QApplication>
 namespace Ui {
 class window;
@@ -37,6 +38,7 @@ public:
     QHBoxLayout mainHboxLayout[10];
     HistoryAudio *historyAudio=NULL;
     setGate *settingData=NULL;
+    LogQuery *logQuery=NULL;
     //====================
     QLabel dataLinkState;
     QLabel audioLinkState;
@@ -47,6 +49,8 @@ private slots:
     void refLinkState();
     void on_actSetGate_triggered();
     void switchFullScreen();
+    void on_actQuery_triggered();
+
 private:
     Ui::window *ui;
 };
