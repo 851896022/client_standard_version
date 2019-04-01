@@ -1,6 +1,6 @@
 #include "logquery.h"
 #include "ui_logquery.h"
-
+#include "QMessageBox"
 LogQuery::LogQuery(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::LogQuery)
@@ -11,7 +11,10 @@ LogQuery::LogQuery(QWidget *parent) :
     QDateTime t=QDateTime::currentDateTime();
     ui->dateTimeEditStart->setDateTime(t.addDays(0-1));
     ui->dateTimeEditEnd->setDateTime(t);
+
+
 }
+
 
 LogQuery::~LogQuery()
 {
@@ -20,6 +23,11 @@ LogQuery::~LogQuery()
 
 void LogQuery::on_BtnFind_clicked()
 {
+    if(!g->mySql.db.isOpen())
+    {
+        QMessageBox::information(this,"连接失败","数据库连接失败！");
+        return;
+    }
     model->deleteLater();
     model = new QSqlQueryModel;
     //qWarning()<<"查询日志";

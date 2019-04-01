@@ -37,7 +37,7 @@ window::window(QWidget *parent) :
     QString station=setting.value("Station/station").toString();//将读取出的数据进行使用;
     g->stationLabel=station;
     //------main----------
-    if(station==QString(554))
+    if(station==QString("554"))
     {
         qDebug()<<"init main window mian 554";
         g->equCount=2;
@@ -61,7 +61,7 @@ window::window(QWidget *parent) :
         ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
         ui->mainTabWidget->setTabText(0,"554台");
     }
-    else if(station==QString(564))
+    else if(station==QString("564"))
     {
         qDebug()<<"init main window mian 564";
         g->equCount=2;
@@ -86,7 +86,7 @@ window::window(QWidget *parent) :
         ui->mainTabWidget->setTabText(0,"564台");
     }
 
-    else if(station==QString(2024))
+    else if(station==QString("2024"))
     {
         qDebug()<<"init main window mian 2024";
         g->equCount=2;
@@ -110,7 +110,7 @@ window::window(QWidget *parent) :
         ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
         ui->mainTabWidget->setTabText(0,"2024台");
     }
-    else if(station==QString(641))
+    else if(station==QString("641"))
     {
         qDebug()<<"init main window mian 641";
         g->equCount=2;
