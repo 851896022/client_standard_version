@@ -14,6 +14,7 @@ HistoryAudio::HistoryAudio(QWidget *parent) :
     //webView.load(QString("http://localhost:56879/"));
     */
 
+        ()
 
 
     ui->axWidget->setControl(QString::fromUtf8("{8856F961-340A-11D0-A96B-00C04FD705A2}"));
