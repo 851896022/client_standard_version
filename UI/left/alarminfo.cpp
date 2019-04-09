@@ -71,7 +71,7 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
             g->chState[ch]=Normal;
         }
     }
-    QString timeStr=time.toString("MM-dd hh:mm:ss")+"\r\n";
+    QString timeStr=time.toString("MM-dd hh:mm:ss ");
     QString info;
     if(num==1)
     {
@@ -89,7 +89,8 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
         info=g->chNameList[ch]+g->alarmTypeString.at(num);
     }
 
-    ui->alarmListWidget->addItem(timeStr+info);
+    ui->alarmListWidget->addItem(timeStr+"\r\n"+info);
+    qDebug()<<timeStr<<info;
     //speak
     if(num==1||num==2)
     {
