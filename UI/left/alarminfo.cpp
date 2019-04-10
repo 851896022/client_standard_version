@@ -110,6 +110,11 @@ void AlarmInfo::on_btnReset_clicked()
         {
             g->chState[i]=Normal;
         }
+        g->mySql.takeLog(/*日志内容*/"复位报警信息",
+                         /*表*/"user_log",
+                         /*类型*/"user",
+                         /*用户名*/g->userName
+                         );//用户日志模板
     }
     else
     {

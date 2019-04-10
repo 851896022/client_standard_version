@@ -5,6 +5,7 @@
 //#include <QtWebEngineWidgets>
 #include <QVBoxLayout>
 #include <ActiveQt/QAxWidget>
+#include "data/global.h"
 namespace Ui {
 class HistoryAudio;
 }
