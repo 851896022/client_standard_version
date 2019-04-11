@@ -127,6 +127,8 @@ void LogQuery::on_btnSaveToFile_clicked()
     QString filepath = QFileDialog::getSaveFileName(this, tr("Save as..."),
                 QString(), tr("EXCEL 文档 (*.csv );;文本文件 (*.txt);;"));
 
+    if(filepath.isEmpty())return;
+    if(table->model()==NULL)return;
         int row = table->model()->rowCount();
         int col = table->model()->columnCount();
         QList<QString> list;

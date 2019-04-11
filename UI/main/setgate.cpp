@@ -47,6 +47,11 @@ setGate::~setGate()
 
 void setGate::on_btnOk_clicked()
 {
+    if(g->userType>1)
+    {
+        QMessageBox::warning(NULL,"错误","权限不足！");
+        return;
+    }
     //=============================
     //设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
     QSettings setting(qApp->applicationDirPath()+"/set.ini",QSettings::IniFormat);

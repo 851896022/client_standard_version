@@ -86,5 +86,5 @@ FORMS += \
 RESOURCES += \
     image.qrc\
 
-
+RC_ICONS = main.ico
 DESTDIR         = bin

@@ -119,6 +119,7 @@ background-color: rgb(211, 211, 211);
      <string>管理</string>
     </property>
     <addaction name="actSetGate"/>
+    <addaction name="actUser"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -146,6 +147,11 @@ background-color: rgb(211, 211, 211);
   <action name="actQuery">
    <property name="text">
     <string>日志查询</string>
+   </property>
+  </action>
+  <action name="actUser">
+   <property name="text">
+    <string>用户管理</string>
    </property>
   </action>
  </widget>

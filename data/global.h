@@ -30,6 +30,20 @@ struct AlarmInfoData
     QDateTime startTime;
     QDateTime endTime;
 };
+enum UserType
+{
+  admin,
+  highUser,
+  lowUser,
+  super=-1
+};
+struct User
+{
+    User() {}
+    QString userName;
+    UserType userType=lowUser;
+    QString passWord;
+};
 class Global : public QObject
 {
     Q_OBJECT
@@ -55,6 +69,7 @@ public:
     //==============================
     bool islogIn=false;
     QString userName;
+    UserType userType;
     //====SAPI=============
     QAxObject *voiceObj;
     MySQL mySql;

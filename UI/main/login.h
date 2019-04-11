@@ -4,6 +4,9 @@
 #include <QFrame>
 #include <QMessageBox>
 #include "data/global.h"
+#include "data/yxt/qRedis.h"
+#include <QSettings>
+#include <QMessageBox>
 namespace Ui {
 class LogIn;
 }

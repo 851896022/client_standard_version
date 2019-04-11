@@ -320,3 +320,17 @@ void window::on_actQuery_triggered()
         QMessageBox::information(this,"信息","请登录");
     }
 }
+
+void window::on_actUser_triggered()
+{
+    if(g->islogIn)
+    {
+        if(userManagent) userManagent->deleteLater();
+        userManagent=new UserManagement;
+        userManagent->show();
+    }
+    else
+    {
+        QMessageBox::information(this,"信息","请登录");
+    }
+}

@@ -14,6 +14,7 @@
 #include "UI/main/historyaudio.h"
 #include "UI/main/setgate.h"
 #include "UI/main/logquery.h"
+#include "UI/main/usermanagement.h"
 #include <QApplication>
 namespace Ui {
 class window;
@@ -39,6 +40,7 @@ public:
     HistoryAudio *historyAudio=NULL;
     setGate *settingData=NULL;
     LogQuery *logQuery=NULL;
+    UserManagement * userManagent=NULL;
     //====================
     QLabel dataLinkState;
     QLabel audioLinkState;
@@ -50,6 +52,8 @@ private slots:
     void on_actSetGate_triggered();
     void switchFullScreen();
     void on_actQuery_triggered();
+
+    void on_actUser_triggered();
 
 private:
     Ui::window *ui;

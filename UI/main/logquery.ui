@@ -35,7 +35,7 @@
         </sizepolicy>
        </property>
        <property name="displayFormat">
-        <string>yyyy-MM-dd hh:mm</string>
+        <string>yyyy-MM-dd hh:mm:ss</string>
        </property>
        <property name="calendarPopup">
         <bool>true</bool>
@@ -61,7 +61,7 @@
         </sizepolicy>
        </property>
        <property name="displayFormat">
-        <string>yyyy-MM-dd hh:mm</string>
+        <string>yyyy-MM-dd hh:mm:ss</string>
        </property>
        <property name="calendarPopup">
         <bool>true</bool>
