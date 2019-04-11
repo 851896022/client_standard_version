@@ -1,0 +1,25 @@
+#ifndef USERMANAGEMENT_H
+#define USERMANAGEMENT_H
+
+#include <QFrame>
+#include <data/global.h>
+namespace Ui {
+class UserManagement;
+}
+
+class UserManagement : public QFrame
+{
+    Q_OBJECT
+
+public:
+    explicit UserManagement(QWidget *parent = 0);
+    ~UserManagement();
+    QList<User> userList;
+private slots:
+    void on_txtUser_textChanged(const QString &arg1);
+    
+private:
+    Ui::UserManagement *ui;
+};
+
+#endif // USERMANAGEMENT_H
