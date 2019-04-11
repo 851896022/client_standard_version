@@ -77,7 +77,7 @@ void setGate::on_btnOk_clicked()
             redis->set("simDelay",ui->txtAlarmDelay->text());
 
         }
-        g->mySql.takeLog(/*日志内容*/QString("修改门限")+"幅度门限:"+ui->txtAlarmGate->text()
+        g->mySql.takeLog(/*日志内容*/QString("修改")+"幅度门限:"+ui->txtAlarmGate->text()
                                             +"幅度延时:"+ui->txtAlarmDelay->text()
                                             +"相似度门限:"+ui->txtSImGate->text()
                                             +"相似度延时:"+ui->txtAlarmDelay->text(),

@@ -23,6 +23,8 @@ private slots:
     void on_BtnFind_clicked();
 
 
+    void on_btnSaveToFile_clicked();
+
 private:
     Ui::LogQuery *ui;
 };
