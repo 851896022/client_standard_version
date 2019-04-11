@@ -118,12 +118,14 @@ void LogQuery::on_BtnFind_clicked()
 }
 
 
+#include <QFileDialog>
+#include <QTextEdit>
 
 void LogQuery::on_btnSaveToFile_clicked()
 {
    QTableView *table=ui->tableView;
     QString filepath = QFileDialog::getSaveFileName(this, tr("Save as..."),
-                QString(), tr("EXCEL files (*.xls *.xlsx);;HTML-Files (*.txt);;"));
+                QString(), tr("EXCEL 文档 (*.csv );;文本文件 (*.txt);;"));
 
         int row = table->model()->rowCount();
         int col = table->model()->columnCount();
@@ -132,7 +134,7 @@ void LogQuery::on_btnSaveToFile_clicked()
         QString HeaderRow;
         for(int i=0;i<col;i++)
         {
-            HeaderRow.append(table->model()->headerData(i,Qt::Horizontal).toString()+"\t");
+            HeaderRow.append(table->model()->headerData(i,Qt::Horizontal).toString()+",");
         }
         list.push_back(HeaderRow);
         for(int i=0;i<row;i++)
@@ -140,7 +142,7 @@ void LogQuery::on_btnSaveToFile_clicked()
             QString rowStr = "";
             for(int j=0;j<col;j++){
 
-                rowStr += table->model()->data(table->model()->index(i,j)).toString() + "\t";
+                rowStr += table->model()->data(table->model()->index(i,j)).toString() + ",";
             }
             list.push_back(rowStr);
         }
@@ -154,7 +156,7 @@ void LogQuery::on_btnSaveToFile_clicked()
         if(file.open(QFile::WriteOnly | QIODevice::Text))
         {
             QTextStream ts(&file);
-            ts.setCodec("UTF-8");
+            //ts.setCodec("UTF-8");
             ts<<textEdit.document()->toPlainText();
             file.close();
         }
