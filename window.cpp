@@ -181,6 +181,29 @@ window::window(QWidget *parent) :
         ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
         ui->mainTabWidget->setTabText(0,"916台");
     }
+    else if(station==QString("542"))
+    {
+        qDebug()<<"init main window mian 542";
+        g->equCount=1;
+        QList<int> modleList[1];
+        modleList[0]<<0<<1<<2<<3<<4<<5<<6<<7<<8<<9<<10<<11;
+        for(int i=0;i<g->equCount;i++)
+        {
+            for(int j=0;j<modleList[i].count();j++)
+            {
+                mainHboxLayout[i].addWidget(&chModules[modleList[i].at(j)]);
+                chModules[modleList[i].at(j)].No=modleList[i].at(j);
+                chModules[modleList[i].at(j)].initThis();
+                connect(&chModules[modleList[i].at(j)],SIGNAL(changeListen(int,int)),&listen,SLOT(onChangeListen(int,int)));
+                connect(&listen,SIGNAL(listenInfo(int,int)),&chModules[modleList[i].at(j)],SLOT(onStarListenThisCH(int,int)));
+
+            }
+
+            mainVboxLayout.addLayout(&mainHboxLayout[i]);
+        }
+        ui->mainTabWidgetTab_0->setLayout(&mainVboxLayout);
+        ui->mainTabWidget->setTabText(0,"542台");
+    }
     else
     {
         qDebug()<<"init main window mian std";
