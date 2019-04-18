@@ -90,6 +90,10 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
     }
 
     ui->alarmListWidget->addItem(timeStr+"\r\n"+info);
+    if(ui->alarmListWidget->count()>20)
+    {
+        ui->alarmListWidget->takeItem(0);
+    }
     qDebug()<<timeStr<<info;
     //speak
     if(num==1||num==2)
@@ -106,6 +110,8 @@ void AlarmInfo::on_btnReset_clicked()
     if(g->islogIn)
     {
         ui->alarmListWidget->clear();
+
+
         for(int i=0;i<200;i++)
         {
             g->chState[i]=Normal;
