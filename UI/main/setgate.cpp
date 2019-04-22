@@ -79,7 +79,7 @@ void setGate::on_btnOk_clicked()
 
         }
         {
-            redis->set("simDelay",ui->txtAlarmDelay->text());
+            redis->set("simDelay",ui->txtSImDelay->text());
 
         }
         g->mySql.takeLog(/*日志内容*/QString("修改")+"幅度门限:"+ui->txtAlarmGate->text()

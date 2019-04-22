@@ -24,26 +24,36 @@ LogQuery::~LogQuery()
 
 void LogQuery::on_BtnFind_clicked()
 {
+    /*
     if(!g->mySql.db.isOpen())
     {
-        QMessageBox::information(this,"连接失败","数据库连接失败！");
+
+        QMessageBox::information(this,"连接失败","数据库连接失败！1001");
         return;
     }
+    */
     g->mySql.takeLog(/*日志内容*/"查询"+ui->type->currentText(),
                      /*表*/"user_log",
                      /*类型*/"user",
                      /*用户名*/g->userName
                      );//用户日志模板
-    model->deleteLater();
+
+    if(model) model->deleteLater();
+
     model = new QSqlQueryModel;
+
     //qWarning()<<"查询日志";
 
 
 
     QString type=typeList.at(ui->type->currentIndex());
+
     QString startTime=ui->dateTimeEditStart->dateTime().toString("yyyy-MM-dd hh:mm:ss");
+
     QString endTime=ui->dateTimeEditEnd->dateTime().toString("yyyy-MM-dd hh:mm:ss");
+
     QStringList strHeader;
+
     QString msg;
 
         if(ui->type->currentIndex()==1)//如果是秒数据
@@ -74,6 +84,7 @@ void LogQuery::on_BtnFind_clicked()
         }
         else
         {
+
             strHeader<<"时间"<<"用户"<<"日志";
             msg+="select time,user,log from "
                     +type
@@ -82,18 +93,29 @@ void LogQuery::on_BtnFind_clicked()
                     +"' and dt<'"
                     +endTime
                 +"';　";
+
         }
 
     //qDebug()<<msg;
+
     model->setQuery(msg);//这里直接设置SQL语句，忽略最后一个参数
 
     while(model->canFetchMore())
     {
+
         model->fetchMore();
 
     }
+
+    if(model->rowCount()==0&&model->columnCount()==0)
+    {
+        QMessageBox::information(this,"连接失败","数据库连接失败！1002");
+        return;
+    }
+
     for(int i=0;i<strHeader.count();i++)
     {
+
         model->setHeaderData(i,Qt::Horizontal,strHeader[i]);
     }
 
@@ -103,14 +125,19 @@ void LogQuery::on_BtnFind_clicked()
     //以下是视觉方面的效果，不加也没影响
     
     //隔行变色
+
     ui->tableView->setAlternatingRowColors(true);
     //setHorizontalHeaderLabels;
     //ui->tableView->horizontalHeader()->
     //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
+
     ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     //设置行高
+
     int row_count = model->rowCount();
+
     for(int i =0; i < row_count; i++)
     {
       ui->tableView->setRowHeight(i, 20);

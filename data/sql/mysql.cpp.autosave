@@ -16,6 +16,7 @@ void MySQL::initThis(QString HostName,QString DataBaseName,QString UserName,QStr
     db.setDatabaseName(SqlDataBaseName);       //这里输入你的数据库名
     db.setUserName(SqlUserName);
     db.setPassword(SqlPassWord);   //这里输入你的密码
+
     if (!db.open())
     {
         qDebug()<<"数据库打开失败！";
@@ -25,25 +26,42 @@ void MySQL::initThis(QString HostName,QString DataBaseName,QString UserName,QStr
         query=QSqlQuery(db);
     }
 }
-void reInit()
-{
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName(SqlHostName);
-    db.setDatabaseName(SqlDataBaseName);       //这里输入你的数据库名
-    db.setUserName(SqlUserName);
-    db.setPassword(SqlPassWord);   //这里输入你的密码
-    if (!db.open())
-    {
-        qDebug()<<"数据库打开失败！";
-    }
-    else
-    {
-        query=QSqlQuery(db);
-    }
-}
+
 bool MySQL::command(QString cmd)
 {
-    return query.exec(cmd);
+
+        if(query.exec(cmd))
+        {
+            return true;//一切正常
+        }
+        else //尝试重新连接
+        {
+            
+            db.close();
+            if(db.open())
+            {
+                
+                if(query.exec(cmd))//重新尝试执行
+                {
+                    qDebug()<<"重新执行OK。";
+                    return  true; //成功
+                }
+                else
+                {
+                    qDebug()<<"重新执行失败。";
+                    return false; //失败
+                }
+            }
+            else
+            {
+                qDebug()<<"重新连接失败。";
+                return false;//打开失败
+            }
+        }
+
+
+
+
 }
 bool MySQL::takeLog(QString log,QString sheet,QString type,QString user)
 {
