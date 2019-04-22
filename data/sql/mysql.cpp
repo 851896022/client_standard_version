@@ -36,19 +36,19 @@ bool MySQL::command(QString cmd)
         }
         else //尝试重新连接
         {
-            qDebug()<<"执行失败，可能断开连接了。";
+
             db.close();
             if(db.open())
             {
-                qDebug()<<"重新连接OK。";
+
                 if(query.exec(cmd))//重新尝试执行
                 {
-                    qDebug()<<"重新执行OK。";
+                    qDebug()<<"重新连接后，执行成功。";
                     return  true; //成功
                 }
                 else
                 {
-                    qDebug()<<"重新执行失败。";
+                    qDebug()<<"重新连接后，执行失败。";
                     return false; //失败
                 }
             }

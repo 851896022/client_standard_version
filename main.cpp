@@ -10,12 +10,14 @@
 #include <QDir>
 #include <QFile>
 #include <QDateTime>
+#include <windows.h>
+#include <winbase.h>
 Global *g;
 void setDebugOutput(const QString &targetFilePath, const bool &argDateFlag = false);
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED);
 
     setDebugOutput( qApp->applicationDirPath()+"/log/%1.log", true );
     qDebug()<<"init global";
