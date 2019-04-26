@@ -92,6 +92,12 @@ background-color: rgb(211, 211, 211);
             <number>0</number>
            </property>
            <widget class="QWidget" name="mainTabWidgetTab_0">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <attribute name="title">
              <string>中控机房</string>
             </attribute>

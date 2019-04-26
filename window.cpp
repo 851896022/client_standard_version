@@ -344,11 +344,13 @@ void window::switchFullScreen()
     {
 
         ui->centralWidget->setWindowFlags (Qt::SubWindow);
+        ui->leftWidget->showNormal();
         ui->centralWidget->showNormal ();
     }
     else
     {
         ui->centralWidget->setWindowFlags (Qt::Window);
+        ui->leftWidget->hide();
         ui->centralWidget->showFullScreen ();
     }
 

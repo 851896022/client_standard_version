@@ -16,6 +16,8 @@
 #include "UI/main/logquery.h"
 #include "UI/main/usermanagement.h"
 #include <QApplication>
+
+#include <QKeyEvent>
 namespace Ui {
 class window;
 }
@@ -46,6 +48,8 @@ public:
     QLabel audioLinkState;
     QLabel alarmLinkState;
     QTimer refLinkStateTimer;
+protected:
+    //void keyPressEvent(QKeyEvent * e);
 private slots:
     void on_actFindOld_triggered();
     void refLinkState();

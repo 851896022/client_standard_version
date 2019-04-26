@@ -52,17 +52,20 @@ void TopBar::refListenInfo(int ch)
     ui->listenInfo->setText(msg);
 
 }
-
+void TopBar::on_escKey_clicked()
+{
+    on_fullScreen_clicked();
+}
 void TopBar::on_fullScreen_clicked()
 {
     if(isFull)
     {
-        ui->fullScreen->setIcon(QIcon(":/image/exitFull.png"));
+        ui->fullScreen->setIcon(QIcon(":/image/exitFull.png"));//图片名字反了
         isFull=false;
     }
     else
     {
-        ui->fullScreen->setIcon(QIcon(":/image/toFull.png"));
+        ui->fullScreen->setIcon(QIcon(":/image/toFull.png"));//图片名字反了
         isFull=true;
     }
     emit toFullScreen();
