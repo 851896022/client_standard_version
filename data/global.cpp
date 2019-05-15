@@ -45,7 +45,7 @@ Global::Global(QObject *parent) : QObject(parent)
             chNameList.append(QString("通道")+QString::number(chNameList.count()+1));
         }
     }
-    voiceObj=new QAxObject("Sapi.SpVoice");
+
     //=============================
     //设置配置文件的目录和位置，如果有，则不动，没有，会自动创建
     QSettings setting(qApp->applicationDirPath()+"/set.ini",QSettings::IniFormat);
@@ -61,8 +61,9 @@ void Global::switchListen(int,int)
 }
 void Global::speak(QString str)
 {
-    //voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", QString(), 2);
-    voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", str, 1);
+    emit toSpeak(str);
+    //voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", QString(), 2);//打断当前朗读，执行新的
+    //voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", str, 2);
 }
 bool Global::doLog(QString str)
 {

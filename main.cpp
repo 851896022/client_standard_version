@@ -12,6 +12,7 @@
 #include <QDateTime>
 #include <windows.h>
 #include <winbase.h>
+#include "data/audio/speak.h"
 Global *g;
 void setDebugOutput(const QString &targetFilePath, const bool &argDateFlag = false);
 int main(int argc, char *argv[])
@@ -22,6 +23,16 @@ int main(int argc, char *argv[])
     setDebugOutput( qApp->applicationDirPath()+"/log/%1.log", true );
     qDebug()<<"init global";
     g= new Global;
+
+
+
+    QThread speakThread;
+    Speak speak;
+    speak.moveToThread(&speakThread);
+    QObject::connect(&speakThread,SIGNAL(started()),&speak,SLOT(initThis()));
+    speakThread.start();
+
+
     qDebug()<<"init main window";
     window w;
     QDesktopWidget *desktop = QApplication::desktop();
@@ -49,6 +60,7 @@ int main(int argc, char *argv[])
 
     {
         QObject::connect(receiveAlarm,SIGNAL(alarm(int,int,QDateTime)),&w.alarmInfo,SLOT(onReceiveAlarmInfo(int,int,QDateTime)));
+        QObject::connect(g,SIGNAL(toSpeak(QString)),&speak,SLOT(speak(QString)));
     }
     w.show();
     return a.exec();

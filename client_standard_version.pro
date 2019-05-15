@@ -45,7 +45,8 @@ SOURCES += \
     data/yxt/qRedis.cpp \
     data/sql/mysql.cpp \
     UI/main/logquery.cpp \
-    UI/main/usermanagement.cpp
+    UI/main/usermanagement.cpp \
+    data/audio/speak.cpp
 
 HEADERS += \
         window.h \
@@ -67,7 +68,8 @@ HEADERS += \
     data/yxt/qRedis.h \
     data/sql/mysql.h \
     UI/main/logquery.h \
-    UI/main/usermanagement.h
+    UI/main/usermanagement.h \
+    data/audio/speak.h
 
 FORMS += \
         window.ui \

@@ -8,7 +8,7 @@
 #include <QDir>
 #include <QList>
 #include <QDateTime>
-#include <QAxObject>
+
 #include "data/sql/mysql.h"
 //#include "data/sql/mysql.h"
 enum AlarmType
@@ -70,8 +70,7 @@ public:
     bool islogIn=false;
     QString userName;
     UserType userType;
-    //====SAPI=============
-    QAxObject *voiceObj;
+
     MySQL mySql;
     //=============================
 
@@ -80,6 +79,7 @@ public:
 
 signals:
     void switchListen();
+    void toSpeak(QString str);
 public slots:
     void switchListen(int,int);
     void speak(QString str);
