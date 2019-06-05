@@ -73,7 +73,7 @@ void ChModule::refApm()
 
     //============判断数据是否不波动了=============
 
-    if(g->APM[No]==apmCahe&&g->APM[No]>0)
+    if(g->APM[No]==apmCahe && g->APM[No]>0)
     {
         apmCount++;
     }
@@ -133,11 +133,8 @@ void ChModule::refSim()
     }
     else
     {
-        if(g->stationLabel==QString("yt"))
-        {
-            str=QString::number(sqrt(sqrt( g->audioSim[No]))*100,'f', 2)+"%";
-        }
-        else
+
+        //master
         {
             str=QString::number(g->audioSim[No]*100,'f', 2)+"%";
         }
