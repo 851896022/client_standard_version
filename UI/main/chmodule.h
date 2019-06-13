@@ -19,6 +19,8 @@ public:
     QTimer refSimTimer;
     int refDelay=0;
     int No=0;
+    int modeCountLessOf5=0;
+    bool isWork=false;
 private slots:
 
 

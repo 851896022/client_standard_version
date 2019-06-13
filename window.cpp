@@ -275,7 +275,19 @@ window::~window()
 {
     delete ui;
 }
+#include <QProcess>
+void window::closeEvent(QCloseEvent *event)
+{
+    {
+        QProcess p;
+        QString c = "taskkill /im "+qApp->applicationName()+".exe /f";
+        p.execute(c);
+        p.close();
 
+    }
+
+    event->accept();
+}
 void window::on_actFindOld_triggered()
 {
     if(g->islogIn)

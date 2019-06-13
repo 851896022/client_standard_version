@@ -18,6 +18,7 @@
 #include <QApplication>
 
 #include <QKeyEvent>
+#include <QCloseEvent>
 namespace Ui {
 class window;
 }
@@ -58,6 +59,7 @@ private slots:
     void on_actQuery_triggered();
 
     void on_actUser_triggered();
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::window *ui;

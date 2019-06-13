@@ -71,6 +71,18 @@ void ChModule::on_ChModule_customContextMenuRequested(const QPoint &pos)
 void ChModule::refApm()
 {
 
+    if(g->APM[No]<5)
+    {
+        modeCountLessOf5+=1;
+    }
+    else
+    {
+        modeCountLessOf5-=1;
+    }
+    if(modeCountLessOf5<0)modeCountLessOf5=0;
+    if(modeCountLessOf5>100)modeCountLessOf5=100;
+
+    if(modeCountLessOf5>20)return;
     //============判断数据是否不波动了=============
 
     if(g->APM[No]==apmCahe && g->APM[No]>0)
