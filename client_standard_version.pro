@@ -90,3 +90,6 @@ RESOURCES += \
 
 RC_ICONS = main.ico
 DESTDIR         = bin
+
+DISTFILES += \
+    UPDATA.md
