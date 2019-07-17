@@ -92,7 +92,7 @@ void LogQuery::on_BtnFind_clicked()
                     +startTime
                     +"' and dt<'"
                     +endTime
-                +"';　";
+                +" as time';　";
 
         }
 

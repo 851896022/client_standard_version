@@ -259,7 +259,7 @@ void setGate::on_oneKeySimGate_clicked()
     {
         for(int i=0;i<200;i++)
         {
-            txtSimGate[i]->setText(QString::number(input));
+            txtSimGate[i]->setText(QString::number(input,"f"));
         }
     }
 }

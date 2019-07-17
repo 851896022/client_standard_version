@@ -75,7 +75,7 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
     QString info;
     if(num==1)
     {
-        if(g->audioSim[ch]<0.15)
+        if(g->audioSim[ch]<0.12)
         {
             info=g->chNameList[ch]+QString("音频错误");
         }
@@ -94,7 +94,7 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
     {
         ui->alarmListWidget->takeItem(0);
     }
-    qDebug()<<timeStr<<info;
+
     //speak
     if(num==1||num==2)
     {
@@ -102,7 +102,7 @@ void AlarmInfo::onReceiveAlarmInfo(int ch,int num,QDateTime time)
     }
     g->speak(info);
 
-
+    qDebug()<<timeStr<<info;
 }
 
 void AlarmInfo::on_btnReset_clicked()

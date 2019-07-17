@@ -20,7 +20,8 @@ void Speak::initThis()
 }
 void Speak::speak(QString str)
 {
-
+    qDebug()<<"speak start"<<str;
     voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", QString(), 2);//打断当前朗读，执行新的
     voiceObj->dynamicCall("Speak(QString, SpeechVoiceSpeakFlags)", str, 1);
+    qDebug()<<"speak end";
 }

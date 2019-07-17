@@ -1,6 +1,7 @@
 ﻿#include "chmodule.h"
 #include "ui_chmodule.h"
 #include "QDebug"
+#include <math.h>
 ChModule::ChModule(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::ChModule)
@@ -139,16 +140,21 @@ void ChModule::refApm()
 void ChModule::refSim()
 {
     QString str;
-    if(g->audioSim[No]<0)
+    if(g->audioSim[No]<0 || _isnan( g->audioSim[No]))
     {
-        str=" ";
+        str="";
     }
     else
     {
 
         //master
+        if(ui->state->geometry().width()>85)
         {
             str=QString::number(g->audioSim[No]*100,'f', 2)+"%";
+        }
+        else if(ui->state->geometry().width()>45)
+        {
+            str=QString::number(int(g->audioSim[No]*100))+"%";
         }
 
     }
