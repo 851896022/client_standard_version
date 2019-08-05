@@ -48,13 +48,19 @@ int main(int argc, char *argv[])
     receiveApmThread->start();
     qDebug()<<"init receive Audio thread";
     //============================
+    QThread playerThread;
     ReceiveAudio *receiveAudio=new ReceiveAudio;
-    receiveAudio->initThis();
+    receiveAudio->moveToThread(&playerThread);
+    QObject::connect(&playerThread,SIGNAL(started()),receiveAudio,SLOT(initThis()));
+    playerThread.start();
 
 
     qDebug()<<"init receive Alarm thread";
+    QThread alarmThread;
     ReceiveAlarm *receiveAlarm=new ReceiveAlarm;
-    receiveAlarm->initThis();
+    receiveAlarm->moveToThread(&alarmThread);
+    QObject::connect(&alarmThread,SIGNAL(started()),receiveAlarm,SLOT(initThis()));
+    alarmThread.start();
 
 
 

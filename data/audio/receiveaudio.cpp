@@ -22,7 +22,7 @@ void ReceiveAudio::onReceiveAudio()
 
     char ch[23040]={0};
     int len=receiveSocket->readDatagram(ch,23040);
-    if(len!=2304)
+    if(len<2304)
     {
         qDebug()<<"收到异常数据,长度"<<len;
         qDebug()<<QByteArray(ch,len);

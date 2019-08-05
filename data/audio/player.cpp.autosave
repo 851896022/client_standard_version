@@ -5,7 +5,7 @@ Player::Player(QObject *parent) : QObject(parent)
     //设置采样格式
     QAudioFormat audioFormat;
     //设置采样率
-    audioFormat.setSampleRate(44100);
+    audioFormat.setSampleRate(48000);
     //设置通道数
     audioFormat.setChannelCount(1);
     //设置采样大小，一般为8位或16位

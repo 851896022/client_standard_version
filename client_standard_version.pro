@@ -93,3 +93,4 @@ DESTDIR         = bin
 
 DISTFILES += \
     UPDATA.md
+CONFIG += console pro
